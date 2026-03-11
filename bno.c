@@ -1,9 +1,9 @@
 #include "bno.h"
 
 void BNO_reset() {
-	msleep(2);
+	usleep(2000);
 	i2c_write(BNO055_SYS_TRIGGER, 0x2);
-	msleep(30);
+	usleep(30000);
 	i2c_write(BNO055_SYS_TRIGGER, 0x00);
 }
 
@@ -78,21 +78,21 @@ void BNO_POST() {
 	}
 	if (k == 4) {
 		printf("CHIP DATA \r\n");
-		msleep(1);
+		usleep(1000);
 		uint8_t lsb = 0, msb = 0;
 		i2c_read(BNO055_SW_REV_ID_LSB, &def, 2);
 		lsb = def;
 		i2c_read(BNO055_SW_REV_ID_MSB, &def, 2);
 		msb = def;
 		i2c_read(BNO055_BL_REV_ID, &def, 2);
-		msleep(25);
+		usleep(25000);
 		i2c_read(BNO055_ST_RESULT, &def, 4);
 	}
 }
 
 void SetMode(OPRMode_t mode) {
 	i2c_write(BNO055_OPR_MODE, mode);
-	msleep(30);
+	usleep(30000);
 }
 
 void GetMode() {
@@ -104,7 +104,7 @@ void BNO_init() {
 	sysg |= 0x20;
 	SetMode(BNO055_OPERATION_MODE_CONFIG);
 	GetMode();
-	msleep(25);
+	usleep(25000);
 	i2c_write(BNO055_PAGE_ID, 0x01);
 	i2c_write(BNO055_ACC_CONFIG,acc_normal << 5 | B_31hz << 2 | R_4G);
 	i2c_write(BNO055_GYRO_CONFIG_0, B_23hz << 3 | R_2000);
@@ -117,9 +117,9 @@ void BNO_init() {
 	i2c_write(BNO055_AXIS_MAP_SIGN, REMAP_SIGN_P3);
 	SetPowerMode(NormalPwr);
 	SetMode(BNO055_OPERATION_MODE_NDOF);
-	msleep(25);
+	usleep(25000);
 	i2c_write(BNO055_SYS_TRIGGER, &sysg);
-	msleep(30);
+	usleep(30000);
 	BNO_Calib();
 	i2c_write(BNO055_SYS_TRIGGER, 0x00);
 	GetMode();

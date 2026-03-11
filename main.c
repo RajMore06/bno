@@ -16,7 +16,7 @@ int main() {
     if (i2c_init("/dev/i2c-1", BNO055_ADDRESS) < 0) {
         return 1;
     }
-    msleep(1000);
+    usleep(1000000);
     BNO_POST();
     // Step 2: Verify chip ID
     // uint8_t chip_id;
@@ -27,7 +27,7 @@ int main() {
     //     i2c_close();
     //     return 1;
     // }
-    msleep(800);
+    usleep(800000);
     BNO_setPage(0);
     // Step 3: Configure units and operation mode
     i2c_write(BNO055_UNIT_SEL, 0x01);   // set units
@@ -35,7 +35,7 @@ int main() {
     SetPowerMode(NormalPwr);
     SetMode(BNO055_OPERATION_MODE_NDOF);
     GetMode();
-    msleep(25); // wait 25ms for mode switch
+    usleep(25000); // wait 25ms for mode switch
     BNO_Calib();
 
     // Step 4: Loop to read quaternion data
