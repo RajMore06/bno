@@ -1,14 +1,3 @@
-#include <stdint.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include <stdio.h>
-#include <string.h>
-#include <fcntl.h>
-#include "stdbool.h"
-#include "math.h"
-#include <unistd.h>
-#include <sys/ioctl.h>
-#include <linux/i2c-dev.h>
 #include "i2c.h"
 #include "bno.h"
 
