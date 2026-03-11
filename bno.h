@@ -221,19 +221,6 @@ enum Mag_pwrMode {
 	Mag_Normal, Mag_Sleep, Mag_Suspend, Mag_ForceMode
 };
 
-uint8_t sysg = 0x00;
-uint8_t def = 0;
-static float headingOffset = 0.0f;
-static bool headingZeroed = false;
-char print[8] = { '\0' };
-char bgpr[128] = { '\0' };
-int16_t accelCount[3];  // Stores the 16-bit signed accelerometer sensor output
-int16_t gyroCount[3];   // Stores the 16-bit signed gyro sensor output
-int16_t magCount[3];    // Stores the 16-bit signed magnetometer sensor output
-int16_t quatCount[4];   // Stores the 16-bit signed quaternion output
-int16_t EulCount[3];    // Stores the 16-bit signed Euler angle output
-float head_h;
-
 void BNO_POST();
 void BNO_Calib();
 void BNO_init();
